@@ -1,0 +1,8 @@
+<% include ../partials/header.ejs %>
+      <div>
+        <h1>Categories</h1>
+        <% categories.forEach(category => { %>
+          <p><a href="/categories/<%= category.category_id %>"><%= category.name %></a></p>
+        <% }) %>
+      </div>
+<% include ../partials/footer.ejs %>

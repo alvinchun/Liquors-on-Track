@@ -1,0 +1,12 @@
+<% include ../partials/header.ejs %>
+  <h1>All Liquors</h1>
+  <p><a href="/liquors/new">Add a new liquor</a></p>
+  <% liquors.forEach(liquor => {%>
+    <nav>
+      <a href='/liquors/<%= liquor.liquor_id %>'>
+        <%= liquor.name %>
+      </a>
+    </nav>
+    <%})%>
+
+      <% include ../partials/footer.ejs %>

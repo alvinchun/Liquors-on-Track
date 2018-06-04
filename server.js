@@ -1,14 +1,14 @@
 const express = require("express");
 const path = require("path");
-// const Liquor = require("./models/liquor");
-const Category = require("./models/category");
+const Liquor = require("./models/Liquor");
+const Category = require("./models/Category");
 const bodyParser = require("body-parser");
-// const methodOverride = require("method-override");
+const methodOverride = require("method-override");
 
 const app = express();
 
 // Allow override of HTTP methods based on the query string ?_method=DELETE
-// app.use(methodOverride("_method"));
+app.use(methodOverride("_method"));
 
 // Add the HTTP body onto the request object in all route handlers.
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,66 +28,70 @@ app.use("/public", express.static("public"));
 app.set("view engine", "ejs");
 
 app.get("/", (request, response) => {
+    response.render("home/index");
+  });
+
+app.get("/categories", (request, response) => {
   Category.all().then(categoryData => {
-    response.render("homepage", {categories: categoryData});
+    response.render("categories/index", { categories: categoryData });
+  });
+});
+
+app.get("/liquors", (request, response) => {
+  Liquor.all().then(liquorData => {
+    response.render("liquors/index", { liquors: liquorData });
+  });
+});
+
+app.post("/liquors", (request, response) => {
+  const newLiquor = request.body;
+  Liquor.create(newLiquor).then(liquorData => {
+    response.redirect(302, "/liquors");
+  });
+});
+
+app.get("/liquors/new", (request, response) => {
+  response.render("liquors/new");
+});
+
+app.get("/liquors/:id/edit", (request, response) => {
+  const id = Number(request.params.id);
+  Liquor.findById(id).then(liquorData => {
+    response.render("liquors/edit", { liquor: liquorData })
   })
 });
 
-// app.get("/quotes", (request, response) => {
-//   Quote.all().then(quotesData => {
-//     response.render("quotes/index", { quotes: quotesData });
-//   });
-// });
+app.put("/liquors/:id", (request, response) => {
+  const updatedLiquor = request.body;
+  updatedLiquor.id = request.params.id;
+  Liquor.updateById(updatedLiquor).then(liquorData => {
+    response.redirect(302, `/liquors/${updatedLiquor.id}`);
+  })
+});
 
-// app.post("/quotes", (request, response) => {
-//   const newQuote = request.body;
-//   Quote.create(newQuote).then(quoteData => {
-//     response.redirect(302, "/quotes");
-//   });
-// });
+app.get("/liquors/:id", (request, response) => {
+  const id = Number(request.params.id);
+  Liquor.findById(id).then(liquorData => {
+    response.render("liquors/show", { liquor: liquorData })
+  })
+});
 
-// app.get("/quotes/new", (request, response) => {
-//   response.render("quotes/new");
-// });
+app.delete("/liquors/:id", (request, response) => {
+  const id = Number(request.params.id);
+  Liquor.delete(id).then(liquor => {
+    response.redirect(302, "/liquors");
+  })
+});
 
-// app.get("/quotes/:id/edit", (request, response) => {
-//   const id = Number(request.params.id);
-//   Quote.findById(id).then(quoteData => {
-//     response.render("quotes/edit", { quote: quoteData })
-//   })
-// });
-
-// app.put("/quotes/:id", (request, response) => {
-//   const updatedQuote = request.body;
-//   updatedQuote.id = request.params.id;
-//   Quote.updateById(updatedQuote).then(quoteData => {
-//     response.redirect(302, `/quotes/${updatedQuote.id}`);
-//   })
-// });
-
-// app.get("/quotes/:id", (request, response) => {
-//   const id = Number(request.params.id);
-//   Quote.findById(id).then(quoteData => {
-//     response.render("quotes/show", { quote: quoteData })
-//   })
-// });
-
-// app.delete("/quotes/:id", (request, response) => {
-//   const id = Number(request.params.id);
-//   Quote.delete(id).then(quote => {
-//     response.redirect(302, "/quotes");
-//   })
-// });
-
-// app.get("/categories/:id", (request, response) => {
-//   const id = Number(request.params.id);
-//   Promise.all([
-//     Category.findById(id),
-//     Quote.allByCategoryId(id)
-//   ]).then(([category, quotes]) => {
-//     response.render("categories/show", { category: category, quotes: quotes });
-//   });
-// });
+app.get("/categories/:id", (request, response) => {
+  const id = Number(request.params.id);
+  Promise.all([
+    Category.findById(id),
+    Liquor.allByCategoryId(id)
+  ]).then(([category, liquors]) => {
+    response.render("categories/show", { category: category, liquors: liquors });
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);

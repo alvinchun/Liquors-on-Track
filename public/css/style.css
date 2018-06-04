@@ -1,4 +1,7 @@
 body {
-  background-color: #efefef;
-  font-family: "Roboto", sans-serif;
+  background: firebrick;
+}
+img {
+    width:200px;
+    height:200px;
 }

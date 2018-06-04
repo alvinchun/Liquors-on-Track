@@ -1,0 +1,15 @@
+<% include ../partials/header.ejs %>
+    <div class="page-container">
+      <h2 class="page-title"><%= category.name %></h2>
+
+      <% liquors.forEach(liquor => { %>
+      <img src="<%= liquor.img %>">
+      <p>Name: <%= liquor.name %></p>
+      <p>Proof: <%= liquor.proof %></p>
+      <p>Size: <%= liquor.size %></p>
+      <p>Leftover: <%= liquor.leftover %></p>
+      <p>Location: <%= liquor.location %></p>
+      <p>Category ID: <%= liquor.category_id %></p>
+      <% }) %>
+    </div>
+<% include ../partials/footer.ejs %>

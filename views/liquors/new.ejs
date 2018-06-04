@@ -1,0 +1,28 @@
+<% include ../partials/header.ejs %>
+  <h1>Fill out the information of the new liquor here!</h1>
+  <form class="newform" method="POST" action="/liquors">
+    <label>Img URL: </label>
+    <input id='image' name="img" placeholder="Image Url">
+    <br>
+    <label>Name: </label>
+    <input id='name' name='name' placeholder="Name of the liquor">
+    <br>
+    <label>Proof: </label>
+    <input id='proof' name='proof' placeholder="Proof % of the liquor">
+    <br>
+    <label>Size: </label>
+    <input id='size' name="size" placeholder="Size of the Liquor">
+    <br>
+    <label>Leftover: </label>
+    <input id='leftover' name="leftover" placeholder="How much of the liquor is left">
+    <br>
+    <label>Location: </label>
+    <input id='location' name="location" placeholder="Liquor location?">
+    <br>
+    <label>Category ID: </label>
+    <input id='category_id' name="category_id" placeholder="Which category ID is it belong to?">
+    <br>
+    <button type="submit">SUBMIT</button>
+  </form>
+<% include ../partials/footer.ejs %>
+

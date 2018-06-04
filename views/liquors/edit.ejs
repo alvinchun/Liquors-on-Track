@@ -1,0 +1,36 @@
+<% include ../partials/header.ejs %>
+<form action="/liquors/<%= liquor.liquor_id %>?_method=PUT" method="POST">
+    <label>Img URL: </label>
+    <input value="
+    <%= liquor.img %>" id='image' name="img" placeholder="Image Url">
+    <br>
+
+    <label>Name: </label>
+    <input value="
+    <%= liquor.name %>" id='name' name="name" placeholder="Name">
+    <br>
+
+    <label>Proof: </label>
+    <input value="
+    <%= liquor.proof %>"id='proof' name='proof' placeholder="Proof % of the liquor">
+    <br>
+
+    <label>Size: </label>
+    <input value="
+    <%= liquor.size %>"id='size' name="size" placeholder="Size of the Liquor">
+    <br>
+    <label>Leftover: </label>
+    <input value="
+    <%= liquor.leftover %>"id='leftover' name="leftover" placeholder="How much of the liquor is left">
+    <br>
+    <label>Location: </label>
+    <input value="
+    <%= liquor.location %>"id='location' name="location" placeholder="Liquor location?">
+    <br>
+    <label>Category ID: </label>
+    <input value="
+    <%= liquor.category_id %>"id='category_id' name="category_id" placeholder="Which category ID is it belong to?">
+    <br>
+    <button type="submit">Update</button>
+  </form>
+<% include ../partials/footer.ejs %>

@@ -3,29 +3,28 @@ const db = require("../database/connection");
 const Liquor = {};
 
 Liquor.all = () => {
-  return db.any("SELECT * FROM quotes");
+  return db.any("SELECT * FROM liquors");
 };
 
-// Liquor.findById = id => {
-//   return db.one("SELECT * FROM quotes WHERE id = ${id}", { id: id });
-// };
+Liquor.findById = id => {
+  return db.one("SELECT * FROM liquors WHERE liquor_id = ${id}", { id: id });
+};
 
-// Liquor.create = newQuote => {
-//   return db.one(
-//     "INSERT INTO quotes (author, content, category_id) VALUES (${author}, ${content}, ${category_id}) RETURNING *", newQuote
-//     )
-// };
+Liquor.create = newLiquor => {
+  return db.one("INSERT INTO liquors (name, proof, size, leftover, location, img, category_id) VALUES (${name}, ${proof}, ${size}, ${leftover}, ${location}, ${img}, ${category_id}) RETURNING *", newLiquor);
+};
 
-// Liquor.updateById = updatedQuote => {
-//   return db.none("UPDATE quotes SET author = ${author}, content = ${content}, category_id = ${category_id} WHERE id = ${id}", updatedQuote)
-// }
+Liquor.updateById = updatedLiquor => {
+  return db.none(
+    "UPDATE liquors SET name = ${name}, proof = ${proof}, size = ${size}, leftover = ${leftover}, location = ${location}, img = ${img}, category_id = ${category_id} WHERE liquor_id = ${id}", updatedLiquor)
+}
 
-// Liquor.delete = id => {
-//   return db.result("DELETE FROM quotes WHERE id = ${id}", { id: id });
-// };
+Liquor.delete = id => {
+  return db.result("DELETE FROM liquors WHERE liquor_id = ${id}", { id: id });
+};
 
-// Liquor.allByCategoryId = category_id => {
-//   return db.any("SELECT * FROM quotes WHERE category_id = ${category_id}", {category_id: category_id});
-// };
+Liquor.allByCategoryId = category_id => {
+  return db.any("SELECT * FROM liquors WHERE category_id = ${category_id}", {category_id: category_id});
+};
 
 module.exports = Liquor;
