@@ -54,20 +54,20 @@ app.get("/liquors/new", (request, response) => {
   response.render("liquors/new");
 });
 
-// app.get("/liquors/:id/edit", (request, response) => {
-//   const id = Number(request.params.id);
-//   Liquor.findById(id).then(liquorData => {
-//     response.render("liquors/edit", { liquor: liquorData })
-//   })
-// });
+app.get("/liquors/:id/edit", (request, response) => {
+  const id = Number(request.params.id);
+  Liquor.findById(id).then(liquorData => {
+    response.render("liquors/edit", { liquor: liquorData })
+  })
+});
 
-// app.put("/liquors/:id", (request, response) => {
-//   const updatedLiquor = request.body;
-//   updatedLiquor.id = request.params.id;
-//   Liquor.updateById(updatedLiquor).then(liquorData => {
-//     response.redirect(302, `/liquors/${updatedLiquor.id}`);
-//   })
-// });
+app.put("/liquors/:id", (request, response) => {
+  const updatedLiquor = request.body;
+  updatedLiquor.id = request.params.id;
+  Liquor.updateById(updatedLiquor).then(liquorData => {
+    response.redirect(302, `/liquors/${updatedLiquor.id}`);
+  })
+});
 
 app.get("/liquors/:id", (request, response) => {
   const id = Number(request.params.id);
