@@ -83,15 +83,15 @@ app.delete("/liquors/:id", (request, response) => {
   })
 });
 
-// app.get("/categories/:id", (request, response) => {
-//   const id = Number(request.params.id);
-//   Promise.all([
-//     Category.findById(id),
-//     Liquor.allByCategoryId(id)
-//   ]).then(([category, liquors]) => {
-//     response.render("categories/show", { category: category, liquors: liquors });
-//   });
-// });
+app.get("/categories/:id", (request, response) => {
+  const id = Number(request.params.id);
+  Promise.all([
+    Category.findById(id),
+    Liquor.allByCategoryId(id)
+  ]).then(([category, liquors]) => {
+    response.render("categories/show", { category: category, liquors: liquors });
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
