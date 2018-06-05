@@ -1,7 +1,7 @@
-DROP DATABASE liquor_app;
-CREATE DATABASE liquor_app;
+-- DROP DATABASE liquor_app;
+-- CREATE DATABASE liquor_app;
 
-\c liquor_app
+-- \c liquor_app
 
 DROP TABLE IF EXISTS liquors;
 DROP TABLE IF EXISTS categories;

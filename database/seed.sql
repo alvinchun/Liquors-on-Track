@@ -1,4 +1,4 @@
-\c liquor_app
+-- \c liquor_app
 
 DELETE FROM liquors;
 DELETE FROM categories;
