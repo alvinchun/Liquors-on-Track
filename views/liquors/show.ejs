@@ -2,21 +2,23 @@
 <div class="page-container">
   <h2 class="page-title"><%= liquor.name %></h2>
 
-      <img class="sex" src="<%= liquor.img %>">
+      <img src="<%= liquor.img %>">
       <p>Name: <%= liquor.name %></p>
       <p>Proof: <%= liquor.proof %></p>
       <p>Size: <%= liquor.size %></p>
       <p>Leftover: <%= liquor.leftover %></p>
       <p>Location: <%= liquor.location %></p>
       <p>Category ID: <%= liquor.category_id %></p>
-</div>
+
 
 <form method="POST" action="/liquors/<%= liquor.liquor_id %>?_method=DELETE">
   <button type="Submit">DELETE</button>
 </form>
-<a href="/liquors/
+
+<form action="/liquors/
 <%= liquor.liquor_id %>/edit">
   <button>EDIT</button>
-</a>
+</form>
 
+</div>
 <% include ../partials/footer.ejs %>

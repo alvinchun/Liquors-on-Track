@@ -20,10 +20,6 @@ const PORT = process.env.PORT || 4567;
 // Serve any files in the public folder at the "/public" route.
 app.use("/public", express.static("public"));
 
-// Set the folder for where our views are.
-// we're turning off the app.set function because express defaults to the "views" directory by convention now
-// app.set("views", path.join(__dirname, "views"));
-
 // Tell Express that we use EJS in our views.
 app.set("view engine", "ejs");
 
