@@ -1,8 +1,41 @@
 <% include ../partials/header.ejs %>
+  <div class="topnav">
+    <a href="/">Home</a>
+    <a href="/liquors">Liquors</a>
+    <a href="/categories">Categories</a>
+  </div>
+
   <h1>All Liquors</h1>
-  <p><a href="/liquors/new">Add a new liquor</a></p>
+  <div class="id-list">
+    <table>
+      <b>
+        <tr>
+          <td>Wine: Category ID 1</td>
+        </tr>
+        <tr>
+          <td>Cognac: Category ID 2</td>
+        </tr>
+        <tr>
+          <td>Whisky: Category ID 3</td>
+        </tr>
+        <tr>
+          <td>Vodka: Category ID 4</td>
+        </tr>
+        <tr>
+          <td>Tequila: Category ID 5</td>
+        </tr>
+      </b>
+    </table>
+  </div>
+  <p>
+    <a href="/liquors/new">
+      <button>Add a new liquor</button>
+      </a>
+  </p>
+
   <% liquors.forEach(liquor => {%>
-    <nav>
+
+    <nav id="list">
       <a href='/liquors/<%= liquor.liquor_id %>'>
         <%= liquor.name %>
       </a>

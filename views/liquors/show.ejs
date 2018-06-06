@@ -1,6 +1,13 @@
 <% include ../partials/header.ejs %>
+<div class="topnav">
+  <a class="active" href="/">Home</a>
+  <a href="/liquors">Liquors</a>
+  <a href="/categories">Categories</a>
+</div>
+
 <div class="page-container">
-  <h2 class="page-title"><%= liquor.name %></h2>
+  <!-- <h2 class="page-title"><%= liquor.name %></h2> -->
+<h2 class="page-title"><%= liquor.name %></h2>
 
       <img src="<%= liquor.img %>">
       <p>Name: <%= liquor.name %></p>

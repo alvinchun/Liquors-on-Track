@@ -1,5 +1,11 @@
 <% include ../partials/header.ejs %>
-    <div class="page-container">
+<div class="topnav">
+  <a class="active" href="/">Home</a>
+  <a href="/liquors">Liquors</a>
+  <a href="/categories">Categories</a>
+</div>
+
+<div class="page-container">
       <h2 class="page-title"><%= category.name %></h2>
 
       <% liquors.forEach(liquor => { %>
@@ -11,5 +17,9 @@
       <p>Location: <%= liquor.location %></p>
       <p>Category ID: <%= liquor.category_id %></p>
       <% }) %>
-    </div>
+
+</div>
+
+
+
 <% include ../partials/footer.ejs %>
